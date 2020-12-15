@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+	<div class="container"><br>
+		<div>
+			<form action="#" onsubmit="return validation()">
+				<div class="form-group">
+					<label for="user"> Username: </label>
+					<input type="text" name="user" id="user" autocomplete="off">
+					<span id="username"> </span>
+				</div>
+
+				<div class="form-group">
+					<label> Password: </label>
+					<input type="text" name="pass" id="pass" autocomplete="off">
+					<span id="passwords"> </span>
+				</div>
+
+				<input type="submit" name="submit" value="submit" class="btn btn-success" autocomplete="off">
+
+			</form><br><br>
+		</div>
+	</div>
+
+	<script type="text/javascript">
+
+		function validation(){
+
+			var user = document.getElementById('user').value;
+			var pass = document.getElementById('pass').value;
+
+			if(user == "" || user == null){
+				document.getElementById('username').innerHTML =" ** Name can't be blank";
+				return false;
+			}
+			if(!/^[a-zA-Z ]+$/.test(user)){
+				document.getElementById('username').innerHTML =" ** only letters are allowed";
+				return false;
+			}
+
+			if(pass == ""){
+				document.getElementById('passwords').innerHTML =" ** Password field can't be blank";
+				return false;
+			}
+			if((pass.length < 8) || (pass.length >= 32)) {
+				document.getElementById('passwords').innerHTML =" ** Passwords length must be between 8 to 32";
+				return false;
+			}
+      if(!/^(?=.*[a-z])(?=.*[A-Z]).{8,32}$/.test(pass)) {
+				document.getElementById('passwords').innerHTML =" ** At least one Capital letter needed";
+				return false;
+			}
+      if(!/^(?=.*[0-9]).{8,32}$/.test(pass)) {
+				document.getElementById('passwords').innerHTML =" ** At least one Number needed";
+				return false;
+			}
+      if(!/^(?=.*[!@#$%^&*]).{8,32}$/.test(pass)) {
+				document.getElementById('passwords').innerHTML =" ** At least one Special Number needed";
+				return false;
+			}
+
+      //if(!/^(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{8,32}$/.test(pass)){
+        //document.getElementById('passwords').innerHTML =" ** Need to add at least one capital/special letter/one number";
+        //return false;
+        //}
+
+		}
+
+	</script>
+
+</body>
+</html>
